@@ -5,8 +5,7 @@ import java.util.EnumMap;
 public class BaseBallGame {
     private final BallMaker ballMaker;
     private Ball computerBall;
-    private final int defaultMin;
-    private final int defaultMax;
+    private BallSetting ballSetting;
     private boolean gameEnd;
     private boolean needToQuit;
 
@@ -17,10 +16,9 @@ public class BaseBallGame {
      *
      */
     public BaseBallGame() {
-        defaultMin = 1;
-        defaultMax = 9;
-        int defaultBallSize = 4;
-        ballMaker = new BallMaker(new RandomNumberMaker(), defaultMin, defaultMax);
+        ballSetting = new BallSetting();
+        int defaultBallSize = 3;
+        ballMaker = new BallMaker(new RandomNumberMaker(), ballSetting);
         computerBall = ballMaker.generateNSizeRandomBall(defaultBallSize);
         this.gameEnd = false;
         this.needToQuit = false;

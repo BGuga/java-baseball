@@ -5,8 +5,7 @@ import java.util.List;
 public class BallMaker {
 
     private final NumberMaker numberMaker;
-    private final int minBallSize;
-    private final int maxBallSize;
+    private final BallSetting ballSetting;
 
 
     /**
@@ -16,18 +15,16 @@ public class BallMaker {
      */
     public BallMaker() {
         numberMaker = new RandomNumberMaker();
-        minBallSize = 1;
-        maxBallSize = 9;
+        ballSetting = new BallSetting();
     }
 
-    public BallMaker(RandomNumberMaker numberMaker, int min, int max) {
+    public BallMaker(RandomNumberMaker numberMaker, BallSetting ballSetting) {
         this.numberMaker = numberMaker;
-        this.minBallSize = min;
-        this.maxBallSize = max;
+        this.ballSetting = ballSetting;
     }
 
     public Ball generateNSizeRandomBall(int size) {
-        return new Ball(numberMaker.generateNSizeUniqueNumber(size, minBallSize, maxBallSize));
+        return new Ball(numberMaker.generateNSizeUniqueNumber(size, ballSetting.getMinSize(), ballSetting.getMaxSize()));
     }
 
     public Ball generateBall(List<Integer> ballData) {

@@ -4,16 +4,18 @@ import java.util.EnumMap;
 
 public class BaseBallGame {
     private final BallMaker ballMaker;
-    private final Ball computerBall;
+    private Ball computerBall;
     private final int DEFAULT_MIN = 1;
     private final int DEFAULT_MAX = 9;
     private final int DEFAULT_BALL_SIZE = 3;
     private boolean gameEnd;
+    private boolean needToQuit;
 
     public BaseBallGame() {
         ballMaker = new BallMaker(new RandomNumberMaker(), DEFAULT_MIN, DEFAULT_MAX);
         computerBall = ballMaker.generateNSizeRandomBall(DEFAULT_BALL_SIZE);
         this.gameEnd = false;
+        this.needToQuit = false;
     }
 
     public EnumMap<BallResult, Integer> throwBall(Ball ball) {
@@ -21,8 +23,17 @@ public class BaseBallGame {
         return computerBall.getTotalBallResult(ball);
     }
 
+    public void insertGameCommand(Command command) {
+        if (command == Command.RESTART) {
+            computerBall = ballMaker.generateNSizeRandomBall(3);
+        }
+        if (command == Command.QUIT) {
+            this.needToQuit = true;
+        }
+    }
+
     private void checkGameStatus(Ball ball) {
-        if(computerBall.isAllStrike(ball)){
+        if (computerBall.isAllStrike(ball)) {
             this.gameEnd = true;
         }
     }

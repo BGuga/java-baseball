@@ -27,6 +27,10 @@ public class BaseBallGame {
         return needToQuit;
     }
 
+    public boolean isGameEnd(){
+        return gameEnd;
+    }
+
     public void insertGameCommand(Command command) {
         if (command == Command.RESTART) {
             computerBall = ballMaker.generateNSizeRandomBall(3);
@@ -34,6 +38,10 @@ public class BaseBallGame {
         if (command == Command.QUIT) {
             this.needToQuit = true;
         }
+    }
+
+    public Integer getBallSize(){
+        return DEFAULT_BALL_SIZE;
     }
 
     private void checkGameStatus(Ball ball) {

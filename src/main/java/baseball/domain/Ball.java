@@ -5,6 +5,9 @@ import java.util.List;
 
 public class Ball {
     private static final String REDUPLICATOIN_ERROR_MESSAGE = "[ERROR] 공은 중복된 데이터로 이루어질 수 없습니다.";
+    private static final String BALL_SIZE_ERROR_MESSAGE = "[ERROR] 공의 크기는 %d여야 합니다.";
+    private static final String BALL_MIN_VALIDATION_ERROR_MESSAGE = "[ERROR] 최소 숫자는 %d입니다.";
+    private static final String BALL_MAX_VALIDATION_ERROR_MESSAGE = "[ERROR] 최대 숫자는 %d입니다.";
 
     private final List<Integer> ballData;
     private final int ballSize;
@@ -58,7 +61,7 @@ public class Ball {
 
     private void checkSize(List<Integer> ballData) {
         if (ballData.size() != this.ballSize) {
-            throw new IllegalArgumentException(String.format("[ERROR] 공의 크기는 %d여야 합니다.", this.ballSize));
+            throw new IllegalArgumentException(String.format(BALL_SIZE_ERROR_MESSAGE, this.ballSize));
         }
     }
 
@@ -77,10 +80,10 @@ public class Ball {
 
     private void checkRange(Integer num) {
         if (num < this.minBallNumber) {
-            throw new IllegalArgumentException(String.format("[ERROR] 최소 숫자는 %d입니다.", this.minBallNumber));
+            throw new IllegalArgumentException(String.format(BALL_MIN_VALIDATION_ERROR_MESSAGE, this.minBallNumber));
         }
         if (num > this.maxBallNumber) {
-            throw new IllegalArgumentException(String.format("[ERROR] 최대 숫자는 %d입니다.", this.maxBallNumber));
+            throw new IllegalArgumentException(String.format(BALL_MAX_VALIDATION_ERROR_MESSAGE, this.maxBallNumber));
         }
     }
 

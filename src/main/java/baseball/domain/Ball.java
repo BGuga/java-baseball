@@ -8,6 +8,7 @@ public class Ball {
     private static final String BALL_SIZE_ERROR_MESSAGE = "[ERROR] 공의 크기는 %d여야 합니다.";
     private static final String BALL_MIN_VALIDATION_ERROR_MESSAGE = "[ERROR] 최소 숫자는 %d입니다.";
     private static final String BALL_MAX_VALIDATION_ERROR_MESSAGE = "[ERROR] 최대 숫자는 %d입니다.";
+    private static final String BALL_VERSION_ERROR_MESSAGE = "[ERROR]: 서로 호환되지 않는 공입니다.";
 
     private final List<Integer> ballData;
     private final int ballSize;
@@ -15,14 +16,16 @@ public class Ball {
     private final int maxBallNumber;
 
     public Ball(List<Integer> ballData) {
-        this.ballSize = 3;
+        this.ballSize = ballData.size();
         this.minBallNumber = 1;
         this.maxBallNumber = 9;
         ballValidation(ballData);
         this.ballData = ballData;
     }
 
+
     public EnumMap<BallResult, Integer> getTotalBallResult(Ball anotherBall) {
+        ballVersionValidation(anotherBall);
         EnumMap<BallResult, Integer> result = new EnumMap<BallResult, Integer>(BallResult.class);
         for (int i = 0; i < this.ballSize; i++) {
             BallResult ballResult = anotherBall.getBallResult(i, ballData.get(i));
@@ -32,6 +35,15 @@ public class Ball {
         return result;
     }
 
+    public void ballVersionValidation(Ball anotherBall) {
+        if (size() != anotherBall.size()) {
+            throw new IllegalArgumentException(BALL_VERSION_ERROR_MESSAGE);
+        }
+    }
+
+    /**
+     * 만약에 BallResult에서 Strike를 판단하게 만들기 위해서는 getter를 만들어야 하는 것이 문제다.
+     */
     public BallResult getBallResult(int count, int ballValue) {
         if (!ballData.contains(ballValue)) {
             return BallResult.MISS;
@@ -51,6 +63,10 @@ public class Ball {
             return false;
         }
         return true;
+    }
+
+    public Integer size() {
+        return ballData.size();
     }
 
     private void ballValidation(List<Integer> ballData) {

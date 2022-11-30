@@ -8,6 +8,12 @@ public class BallMaker {
     private final int minBallSize;
     private final int maxBallSize;
 
+
+    /**
+     *
+     * 생성자로 만들 수 있다면 maker는 어떻게 사용하는게 가장 올바를까
+     *
+     */
     public BallMaker() {
         numberMaker = new RandomNumberMaker();
         minBallSize = 1;

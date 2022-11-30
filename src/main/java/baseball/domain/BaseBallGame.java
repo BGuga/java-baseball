@@ -7,14 +7,19 @@ public class BaseBallGame {
     private Ball computerBall;
     private final int defaultMin;
     private final int defaultMax;
-    private final int defaultBallSize;
     private boolean gameEnd;
     private boolean needToQuit;
 
+    /**
+     *
+     * 숫자의 최대 최소는 어디서 관리되어야 할까
+     * 그럼 사이즈는 어디서 관리되어야 할까
+     *
+     */
     public BaseBallGame() {
         defaultMin = 1;
         defaultMax = 9;
-        defaultBallSize = 3;
+        int defaultBallSize = 4;
         ballMaker = new BallMaker(new RandomNumberMaker(), defaultMin, defaultMax);
         computerBall = ballMaker.generateNSizeRandomBall(defaultBallSize);
         this.gameEnd = false;
@@ -45,7 +50,7 @@ public class BaseBallGame {
     }
 
     public Integer getBallSize() {
-        return defaultBallSize;
+        return computerBall.size();
     }
 
     private void checkGameStatus(Ball ball) {

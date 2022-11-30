@@ -9,7 +9,7 @@ public class RandomNumberMaker implements NumberMaker {
     @Override
     public List<Integer> generateNSizeUniqueNumber(int size, int min, int max) {
         List<Integer> result = new ArrayList<>();
-        while (result.size() == size) {
+        while (!(result.size() == size)) {
             insertUniqueRandomNumber(result, min, max);
         }
         return result;

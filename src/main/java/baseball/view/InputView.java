@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class InputView {
     public Ball readNBallByUser(int ballSize) {
-        System.out.println("숫자를 입력해주세요 : ");
+        System.out.printf("숫자를 입력해주세요 : ");
         String userInput = Console.readLine();
         return new Ball(makeNumberList(userInput));
     }

@@ -4,6 +4,8 @@ import baseball.domain.BaseBallGame;
 import baseball.view.InputView;
 import baseball.view.OutputView;
 
+import java.util.EnumMap;
+
 public class BaselBallGameController {
     private BaseBallGame baseBallGame;
     private InputView inputView = new InputView();
@@ -23,7 +25,7 @@ public class BaselBallGameController {
 
     private void playGameUntilEnd() {
         while (!baseBallGame.isGameEnd()) {
-            baseBallGame.throwBall(inputView.readNBallByUser(baseBallGame.getBallSize()));
+            outputView.printBallResultMessage(baseBallGame.throwBall(inputView.readNBallByUser(baseBallGame.getBallSize())));
         }
         outputView.printGameEndingMessage();
     }

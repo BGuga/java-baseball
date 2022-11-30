@@ -1,4 +1,28 @@
 package baseball.view;
 
+import baseball.domain.Ball;
+import camp.nextstep.edu.missionutils.Console;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class InputView {
+    public Ball readNBallByUser(int ballSize){
+        System.out.println("숫자를 입력해주세요 : ");
+        String userInput = Console.readLine();
+        return new Ball(makeNumberList(userInput));
+    }
+
+    private List<Integer> makeNumberList(String userInput){
+        IsNumber(userInput);
+        return userInput
+                .chars()
+                .boxed()
+                .map(ch->ch - '0')
+                .collect(Collectors.toList());
+    }
+
+    private void IsNumber(String userInput){
+        Integer.parseInt(userInput);
+    }
 }

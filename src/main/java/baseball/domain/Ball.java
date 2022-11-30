@@ -1,5 +1,6 @@
 package baseball.domain;
 
+import java.util.EnumMap;
 import java.util.List;
 
 public class Ball {
@@ -18,7 +19,17 @@ public class Ball {
         this.ballData = ballData;
     }
 
-    public void ballValidation(List<Integer> ballData) {
+    public BallResult getBallResult(int count, int ballValue) {
+        if (!ballData.contains(ballValue)) {
+            return BallResult.MISS;
+        }
+        if (ballData.get(count) == ballValue) {
+            return BallResult.STRIKE;
+        }
+        return BallResult.BALL;
+    }
+
+    private void ballValidation(List<Integer> ballData) {
         checkSize(ballData);
         checkReduplication(ballData);
         checkNumberRange(ballData);

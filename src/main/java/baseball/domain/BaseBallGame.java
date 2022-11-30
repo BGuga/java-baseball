@@ -23,6 +23,10 @@ public class BaseBallGame {
         return computerBall.getTotalBallResult(ball);
     }
 
+    public boolean isNeedToQuit() {
+        return needToQuit;
+    }
+
     public void insertGameCommand(Command command) {
         if (command == Command.RESTART) {
             computerBall = ballMaker.generateNSizeRandomBall(3);

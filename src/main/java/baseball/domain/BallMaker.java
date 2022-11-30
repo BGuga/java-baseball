@@ -8,6 +8,12 @@ public class BallMaker {
     private final int minBallSize;
     private final int maxBallSize;
 
+    public BallMaker() {
+        numberMaker = new RandomNumberMaker();
+        minBallSize = 1;
+        maxBallSize = 9;
+    }
+
     public BallMaker(RandomNumberMaker numberMaker, int min, int max) {
         this.numberMaker = numberMaker;
         this.minBallSize = min;

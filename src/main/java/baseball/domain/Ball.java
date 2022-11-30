@@ -39,6 +39,17 @@ public class Ball {
         return BallResult.BALL;
     }
 
+    public boolean isAllStrike(Ball anotherBall) {
+        EnumMap<BallResult, Integer> result = getTotalBallResult(anotherBall);
+        if (!result.containsKey(BallResult.STRIKE) || !(result.size() == 1)) {
+            return false;
+        }
+        if (ballSize != result.get(BallResult.STRIKE)) {
+            return false;
+        }
+        return true;
+    }
+
     private void ballValidation(List<Integer> ballData) {
         checkSize(ballData);
         checkReduplication(ballData);

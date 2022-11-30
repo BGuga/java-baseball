@@ -12,13 +12,14 @@ public class RandomNumberMaker implements NumberMaker {
         while (!(result.size() == size)) {
             insertUniqueRandomNumber(result, min, max);
         }
+        System.out.println(result);
         return result;
     }
 
     private void insertUniqueRandomNumber(List<Integer> result, int min, int max) {
         int randomNumber;
         do {
-            randomNumber = Randoms.pickNumberInRange(min, max);
+            randomNumber = Randoms.pickNumberInRange(min, max);;
         } while(result.contains(randomNumber));
         result.add(randomNumber);
     }

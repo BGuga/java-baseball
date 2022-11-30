@@ -19,6 +19,16 @@ public class Ball {
         this.ballData = ballData;
     }
 
+    public EnumMap<BallResult, Integer> getTotalBallResult(Ball anotherBall) {
+        EnumMap<BallResult, Integer> result = new EnumMap<BallResult, Integer>(BallResult.class);
+        for (int i = 0; i < this.ballSize; i++) {
+            BallResult ballResult = anotherBall.getBallResult(i, ballData.get(i));
+            result.computeIfPresent(ballResult, (key, value) -> value + 1);
+            result.computeIfAbsent(ballResult, (value) -> 1);
+        }
+        return result;
+    }
+
     public BallResult getBallResult(int count, int ballValue) {
         if (!ballData.contains(ballValue)) {
             return BallResult.MISS;

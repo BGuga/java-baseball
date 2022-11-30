@@ -34,6 +34,7 @@ public class BaseBallGame {
     public void insertGameCommand(Command command) {
         if (command == Command.RESTART) {
             computerBall = ballMaker.generateNSizeRandomBall(3);
+            this.gameEnd = false;
         }
         if (command == Command.QUIT) {
             this.needToQuit = true;
